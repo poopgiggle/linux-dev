@@ -186,6 +186,14 @@ update_latest () {
 	cp -uv ./tools/test-me.sh "${DIR}/deploy/beagleboard.org/"
 }
 
+get_j1939 () {
+    cd ${DIR}/KERNEL
+    git remote add j1939 git://gitorious.org/~kurt-vd/linux-can/linux-can-j1939.git
+    git remote update j1939
+    git merge j1939/j1939-v3.13
+    cd ${DIR}
+}
+
 /bin/sh -e ${DIR}/tools/host_det.sh || { exit 1 ; }
 
 if [ ! -f ${DIR}/system.sh ] ; then
